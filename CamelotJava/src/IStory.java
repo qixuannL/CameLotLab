@@ -4,6 +4,7 @@ import com.storygraph.INode;
 /**
  * This class represents a story that we want to tell using Camelot
  * @author Alireza Shirvani
+ * test comment
  *
  */
 public interface IStory {
