@@ -1,5 +1,6 @@
 package com.actions;
 
+import com.entities.Character;
 import com.entities.IEntity;
 
 /**
@@ -13,10 +14,10 @@ public class SetCameraFocus implements IAction{
 	private IEntity focus;
 	
 	/**
-	 * @param focus The entity that the camera will focus on.
+	 * @param charlotte The entity that the camera will focus on.
 	 */
 	public SetCameraFocus(IEntity focus) {
-		this.focus=focus;
+		this.focus= focus;
 	}
 	/**
 	 * @return SetCameraFocus

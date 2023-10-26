@@ -1,7 +1,9 @@
 package com.entities;
 
-public class Character<BodyTypes> {
-	private String charName;
+import com.entities.Things.ThingNames;
+
+public class Character<BodyTypes>{
+	private ThingNames charName;
 	private BodyType bodyType;
 	private Clothing clothing;
 	private Hairstyles hairStyle;
@@ -23,18 +25,18 @@ public class Character<BodyTypes> {
 	}
 	
 	public Character() {
-		charName = "no name";
+		charName = ThingNames.noname;
 		bodyType = BodyType.A;
 		clothing = Clothing.Bandit;
 		hairStyle = Hairstyles.Long;
 	}
 	
-	public Character(String name, BodyType bodytype) {
+	public Character(ThingNames name, BodyType bodytype) {
 		charName = name;
 		bodyType = bodytype;
 	}
 	
-	public Character(String name, BodyType bodytype, Clothing clothingvar) {
+	public Character(ThingNames name, BodyType bodytype, Clothing clothingvar) {
 		charName = name;
 		bodyType = bodytype;
 		clothing = clothingvar;
@@ -42,11 +44,15 @@ public class Character<BodyTypes> {
 		
 	}
 	
-	public Character(String name, BodyType bodytype, Clothing clothingvar, Hairstyles hairstyle) {
+	public Character(ThingNames name, BodyType bodytype, Clothing clothingvar, Hairstyles hairstyle) {
 		charName = name;
 		bodyType = bodytype;
 		clothing = clothingvar;
 		hairStyle = hairstyle;
 	}
 
+
+	public ThingNames getName() {
+		return charName;
+	}
 }
