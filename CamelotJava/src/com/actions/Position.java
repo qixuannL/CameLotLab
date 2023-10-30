@@ -1,8 +1,10 @@
 package com.actions;
 
 import com.entities.IThing;
-import com.entities.*;
+import com.entities.Furniture;
 import com.entities.Character;
+import com.entities.Item;
+import com.entities.Place;
 
 /**
  * Create an instance of this class whenever you want to change the position of a character or item.

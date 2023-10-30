@@ -1,14 +1,15 @@
 package com.entities;
 
+import com.actions.Dance;
 import com.entities.Things.ThingNames;
 
-public class Character {
+public class Character implements IEntity, IThing<com.entities.Character.BodyTypes> {
 	private ThingNames charName;
-	private BodyType bodyType;
+	private BodyTypes bodyType;
 	private Clothing clothing;
 	private Hairstyles hairStyle;
 	
-	public enum BodyType {A, B, C, D, E, F, G, H} 
+	public enum BodyTypes {A, B, C, D, E, F, G, H} 
 	
 	public enum Clothing {
 		Bandit, Beggar, LightArmour, HeavyArmour, Merchant, Noble, Peasant, Priest
@@ -16,8 +17,8 @@ public class Character {
 	
 	public enum Hairstyles {Long, Spiky, Short} 
 		
-	public Clothing getTemplate() {
-		return clothing;
+	public BodyTypes getTemplate() {
+		return bodyType;
 	}
 	
 	public Hairstyles getHairstyles() {
@@ -26,17 +27,17 @@ public class Character {
 	
 	public Character() {
 		charName = ThingNames.noname;
-		bodyType = BodyType.A;
+		bodyType = BodyTypes.A;
 		clothing = Clothing.Bandit;
 		hairStyle = Hairstyles.Long;
 	}
 	
-	public Character(ThingNames name, BodyType bodytype) {
+	public Character(ThingNames name, BodyTypes bodytype) {
 		charName = name;
 		bodyType = bodytype;
 	}
 	
-	public Character(ThingNames name, BodyType bodytype, Clothing clothingvar) {
+	public Character(ThingNames name, BodyTypes bodytype, Clothing clothingvar) {
 		charName = name;
 		bodyType = bodytype;
 		clothing = clothingvar;
@@ -44,7 +45,7 @@ public class Character {
 		
 	}
 	
-	public Character(ThingNames name, BodyType bodytype, Clothing clothingvar, Hairstyles hairstyle) {
+	public Character(ThingNames name, BodyTypes bodytype, Clothing clothingvar, Hairstyles hairstyle) {
 		charName = name;
 		bodyType = bodytype;
 		clothing = clothingvar;
@@ -52,7 +53,7 @@ public class Character {
 	}
 
 
-	public ThingNames getName() {
-		return charName;
+	public String getName() {
+		return charName.toString();
 	}
 }

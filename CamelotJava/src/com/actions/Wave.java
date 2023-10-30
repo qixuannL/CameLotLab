@@ -1,5 +1,7 @@
 package com.actions;
 
+import com.entities.Character;
+
 public class Wave implements IAction {
 	private Character character;
 	

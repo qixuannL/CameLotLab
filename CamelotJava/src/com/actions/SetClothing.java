@@ -35,7 +35,7 @@ public class SetClothing implements IAction {
 	 */
 	public SetClothing(Character character) {
 		this.character=character;
-		this.clothing = character.getClothing();
+		this.clothing = character.Clothing();
 	}
 	private Clothing clothing;
 	/**

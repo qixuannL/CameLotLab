@@ -255,7 +255,7 @@ public class ShortStory implements IStory{
         sequence.add(new Take(charlotte, sword));
         sequence.add(new Attack(charlotte, enemy, true));
         sequence.add(new Dance(charlotte));
-        sequence.add(new CreateEffect(enchantedBook, CreateEffect.Effect.Magic));
+        sequence.add(new CreateEffect(charlotte, CreateEffect.Effect.Magic));
         return sequence;
     }
 
@@ -263,13 +263,14 @@ public class ShortStory implements IStory{
         var sequence = new ActionSequence();
         sequence.add(new Give(charlotte, bluepotion, villager));
         sequence.add(new SetNarration("A token of gratitude"));
-        sequence.add(new CreateEffect(CreateEffect.Effect.Magic));
+        sequence.add(new CreateEffect(villager, CreateEffect.Effect.Magic));
         return sequence;
     }
 	
 	private ActionSequence getTalkWithNpcSequence() {
         var sequence = new ActionSequence();
-        sequence.add(new Dance(charlotte, villager));
+        sequence.add(new Dance(charlotte));
+        sequence.add(new Dance(villager));
         sequence.add(new CreateEffect(charlotte, CreateEffect.Effect.Happy));
         sequence.add(new CreateEffect(villager, CreateEffect.Effect.Happy));
         return sequence;

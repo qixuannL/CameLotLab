@@ -2,9 +2,9 @@ package com.entities;
 
 import com.entities.Things.ThingNames;
 
-public class Place<Places> implements IThing<Places>{
-	private String name;
-	private T template;
+public class Place implements IThing<com.entities.Place.Places>{
+	private ThingNames name;
+	private Places template;
 	private Furniture furniture;
 
 	public enum Places{
@@ -18,8 +18,8 @@ public class Place<Places> implements IThing<Places>{
 	}
 
 	@Override
-	public String getName() {
-		return name;
+	public ThingNames getName() {
+		return name.toString();
 	}
 
 	@Override
