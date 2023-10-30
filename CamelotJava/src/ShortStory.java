@@ -10,6 +10,7 @@ import com.actions.Exit;
 import com.actions.Give;
 import com.actions.OpenFurniture;
 import com.actions.SetCameraFocus;
+import com.actions.SetNarration;
 import com.actions.ShowDialog;
 import com.actions.ShowMenu;
 import com.actions.Take;
