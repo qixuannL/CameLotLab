@@ -3,7 +3,7 @@ package com.entities;
 public class Effect {
 	
 	public enum Effects {
-		Blood, Aura, Poof, Blackflame, Death
+		Blood, Aura, Poof, Blackflame, Death, Happy
 	}
 
 }

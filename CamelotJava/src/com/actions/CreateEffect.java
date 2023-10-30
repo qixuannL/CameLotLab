@@ -5,7 +5,7 @@ import com.entities.Effect;
 public class CreateEffect implements IAction{
 	private com.entities.Character character;
 	private Effect effect;
-	public enum Effect {Aura, Blood, Die, Poof, Blackflame, Death, Magic}
+	public enum Effect {Aura, Blood, Die, Poof, Blackflame, Death, Magic, Happy}
 	
 	public CreateEffect(com.entities.Character character, Effect effect) {
 		this.character = character;
