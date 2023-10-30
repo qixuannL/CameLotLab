@@ -1,12 +1,13 @@
 package com.actions;
 
 import com.entities.Item;
+import com.entities.Character;
 
 public class Give implements IAction{
 	private Character character;
 	private Item thing;
 
-	public Give(com.entities.Character charlotte, Item bluepotion, com.entities.Character villager) {
+	public Give(Character charlotte, Item bluepotion, Character villager) {
 		// TODO Auto-generated constructor stub
 	}
 

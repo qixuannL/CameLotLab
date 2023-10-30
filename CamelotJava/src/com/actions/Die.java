@@ -1,4 +1,5 @@
 package com.actions;
+import com.entities.Character;
 
 public class Die implements IAction{
 	private Character character;

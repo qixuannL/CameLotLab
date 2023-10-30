@@ -1,4 +1,5 @@
 package com.actions;
+import com.entities.Character;
 
 public class Drink implements IAction {
 	Character character;
