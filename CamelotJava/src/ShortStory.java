@@ -65,7 +65,7 @@ public class ShortStory implements IStory{
 	}
 	
 	private enum NodeLabels{
-		Init, OpenCloset, PutOnCloak, TtoCityKillEnemy, TakePotion, DrinkPotionKillEnemy, DancePotionKillEnemy, ExitDoor, AttackNPCDie, TalktoNPC, DanceKilledByEnemy, AskHelpKilledbyEnemy, RefuseHelpKilledbyNPC, BedroomSequence
+		Init, OpenCloset, PutOnCloak, TtoCityKillEnemy, TakePotion, DrinkPotionKillEnemy, DancePotionKillEnemy, enemydead, ExitDoor, AttackNPCDie, TalktoNPC, DanceKilledByEnemy, AskHelpKilledbyEnemy, RefuseHelpKilledbyNPC, BedroomSequence
 	}
 	
 	
@@ -86,6 +86,7 @@ public class ShortStory implements IStory{
 		map.add(NodeLabels.DanceKilledByEnemy.toString(), getDanceTogether());
 		map.add(NodeLabels.AskHelpKilledbyEnemy.toString(), getAskForHelp());
 		map.add(NodeLabels.RefuseHelpKilledbyNPC.toString(), getRefuseHelp());
+		map.add(NodeLabels.enemydead.toString(), getEnenemydead());
 		return map;
 	}
 	
@@ -241,15 +242,17 @@ public class ShortStory implements IStory{
         var sequence = new ActionSequence();
         sequence.add(new Wave(charlotte));
         sequence.add(new Wave(witch));
-        sequence.add(new SetNarration("An unexpected encounter..."));
+        sequence.add(new SetNarration("Yay swordddd!"));
         sequence.add(new CreateEffect(witch, CreateEffect.Effect.Aura));
         return sequence;
     }
 	
-	private ActionSequence getFrontDoorSequence() {
+	private ActionSequence getEnenemydead() {
         var sequence = new ActionSequence();
-        sequence.add(new Take(charlotte, enchantedBook));
-        sequence.add(new SetNarration("Tom discovers an enchanted book..."));
+        sequence.add(new SetCameraFocus(charlotte));
+        sequence.add(new Take(charlotte, Sword));
+        sequence.add(new Attack(charlotte, enemy, true));
+        sequence.add(new Dance(charlotte));
         sequence.add(new CreateEffect(enchantedBook, CreateEffect.Effect.Magic));
         return sequence;
     }
@@ -257,8 +260,8 @@ public class ShortStory implements IStory{
 	private ActionSequence getNpcSequence() {
         var sequence = new ActionSequence();
         sequence.add(new Give(charlotte, potion, villager));
-        sequence.add(new SetNarration("A token of gratitude..."));
-        sequence.add(new CreateEffect(, Heart));
+        sequence.add(new SetNarration("A token of gratitude"));
+        sequence.add(new CreateEffect(CreateEffect.Effect.Magic));
         return sequence;
     }
 	
