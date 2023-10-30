@@ -1,7 +1,8 @@
 package com.actions;
+import com.entities.Character;
 
 public class Dance implements IAction{
-	public Dance(com.entities.Character charlotte) {
+	public Dance(Character charlotte) {
 	}
 	
 	@Override

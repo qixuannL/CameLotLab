@@ -1,11 +1,14 @@
 package com.actions;
+
+import com.entities.Item;
 import com.entities.Character;
 
-public class Drink implements IAction {
-	Character character;
+public class Give implements IAction{
+	private Character character;
+	private Item thing;
 
-	public Drink(com.entities.Character charlotte) {
-		this.character = character;
+	public Give(Character charlotte, Item bluepotion, Character villager) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -19,5 +22,6 @@ public class Drink implements IAction {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 
 }

@@ -1,10 +1,9 @@
 package com.actions;
-import com.entities.Character;
 
-public class Drink implements IAction {
-	Character character;
-
-	public Drink(com.entities.Character charlotte) {
+public class Wave implements IAction {
+	private Character character;
+	
+	public Wave(Character character){
 		this.character = character;
 	}
 
@@ -19,5 +18,6 @@ public class Drink implements IAction {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 
 }

@@ -1,9 +1,10 @@
 package com.actions;
+import com.entities.Character;
 
 public class Die implements IAction{
 	private Character character;
 	
-	public Die(com.entities.Character enemy) {
+	public Die(Character enemy) {
 		this.character = enemy;
 	}
 	

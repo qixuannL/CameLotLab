@@ -2,7 +2,7 @@ package com.entities;
 
 import com.entities.Things.ThingNames;
 
-public class Character<BodyTypes>{
+public class Character {
 	private ThingNames charName;
 	private BodyType bodyType;
 	private Clothing clothing;
