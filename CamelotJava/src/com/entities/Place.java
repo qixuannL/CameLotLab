@@ -18,12 +18,12 @@ public class Place implements IThing<com.entities.Place.Places>{
 	}
 
 	@Override
-	public ThingNames getName() {
+	public String getName() {
 		return name.toString();
 	}
 
 	@Override
-	public T getTemplate() {
+	public Places getTemplate() {
 		return template;
 	}
 

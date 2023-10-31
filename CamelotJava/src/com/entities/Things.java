@@ -3,7 +3,7 @@ package com.entities;
 import java.util.Hashtable;
 import java.util.Optional;
 public class Things {
-	public enum ThingNames{ Charlotte, NPC, enemy, Bedroom, City, Cloak, Goldcup, Bluepotion, noname, EnchantedBook, Witch, Sword , Villager,} 
+	public enum ThingNames{ Charlotte, NPC, enemy, Bedroom, city, Cloak, Goldcup, Bluepotion, noname, EnchantedBook, witch, Sword , villager, camp,} 
 	private static Hashtable<ThingNames, IThing<?>> list=new Hashtable<>();
 	public static boolean add(ThingNames name, IThing<?> thing) {
 		if(list.containsKey(name))
