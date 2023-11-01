@@ -26,10 +26,14 @@ import com.entities.Item;
 import com.entities.Item.Items;
 import com.entities.Place;
 import com.entities.Things.ThingNames;
+import com.playerInput.ActionChoice;
+import com.playerInput.ActionChoice.Icons;
+import com.playerInput.SelectionChoice;
 import com.sequences.CharacterCreation;
 import com.actions.Position;
 import com.actions.CreateEffect.Effect;
 import com.entities.Character;
+import com.entities.Furniture;
 
 
 public class ShortStory implements IStory{
@@ -50,10 +54,259 @@ public class ShortStory implements IStory{
 		getThings();
 	}
 	
+	private enum ActionNames{
+		Take, Exit, Open, Teleport,Drink,Dance,Talk,AskHelp, RefuseHelp, GameOver, Discuss, Celebrate, PotionSeq, DiscussMore , NPCSeq
+	}
+	
+	private Place bedroom;
+	private Item cloak;
+	private Place city;
+	private Item bluepotion;
+	private Character NPC;
+	private Character Charlotte;
 	
 	@Override
 	public INode getRoot() {
-		return new Node("root");
+		var initNode = new Node(NodeLabels.Init.toString());
+		var bedroomSequenceInitNode = new Node(NodeLabels.BedroomSequence.Init.toString());
+		var openClosetNode = new Node(NodeLabels.OpenCloset.toString());
+		var putOnCloakNode = new Node(NodeLabels.PutOnCloak.toString());
+		var toCityKillEnemyNode = new Node(NodeLabels.TtoCityKillEnemy.toString());
+		var takePotionNode = new Node(NodeLabels.TakePotion.toString());
+		var drinkPotionKillEnemyNode = new Node(NodeLabels.DrinkPotionKillEnemy.toString());
+		var dancePotionKillEnemyNode = new Node(NodeLabels.DancePotionKillEnemy.toString());
+		var exitDoorNode = new Node(NodeLabels.ExitDoor.toString());
+		var attackNPCDieNode = new Node(NodeLabels.AttackNPCDie.toString());
+		var talkToNPCNode = new Node(NodeLabels.TalktoNPC.toString());
+		var danceKilledByEnemyNode = new Node(NodeLabels.DanceKilledByEnemy.toString());
+		var askHelpKilledbyEnemyNode = new Node(NodeLabels.AskHelpKilledbyEnemy.toString());
+		var refuseHelpKilledbyNPCNode = new Node(NodeLabels.RefuseHelpKilledbyNPC.toString());
+		var enemyDeadNode = new Node(NodeLabels.enemydead.toString());
+		var potionSequenceNode = new Node(NodeLabels.potionsequence.toString());
+		var npcSequenceNode = new Node(NodeLabels.npcsequence.toString());
+		var talkWithNpcSequenceNode = new Node(NodeLabels.talkwithnpcsequence.toString());
+
+		 initNode.addChild(
+	        new ActionChoice(
+	            ActionNames.Exit.toString(),
+	            bedroom.getFurniture("Door"),
+	            Icons.door,
+	            "Leave house",
+	            true),
+	        exitDoorNode
+	    );
+
+	   
+	    bedroomSequenceInitNode.addChild(
+	        new ActionChoice(
+	            ActionNames.Open.toString(),
+	            bedroom.getFurniture("Closet"),
+	            Icons.woodendoor,
+	            "Open the closet",
+	            true),
+	        openClosetNode
+	    );
+
+	
+	    openClosetNode.addChild(
+	        new ActionChoice(ActionNames.Take.toString(),
+	        cloak,
+	        Icons.armour,
+	        "Put on the cloak",
+	        true),
+	        putOnCloakNode
+	    );
+
+
+	    putOnCloakNode.addChild(
+	        new ActionChoice(
+            ActionNames.Teleport.toString(),
+            cloak,
+            Icons.city,
+            "Teleport to the city",
+            true),
+	        toCityKillEnemyNode
+	    );
+
+
+	    toCityKillEnemyNode.addChild(
+	        new ActionChoice(
+	            ActionNames.Take.toString(),
+	            bluepotion,
+	            Icons.potion,
+	            "Take the potion",
+	            true),
+	        takePotionNode
+	    );
+
+
+	    takePotionNode.addChild(
+	        new ActionChoice(
+	            ActionNames.Drink.toString(),
+	            bluepotion,
+	            Icons.potion,
+	            "Drink the potion and fight",
+	            true),
+	        drinkPotionKillEnemyNode
+	    );
+
+	    takePotionNode.addChild(
+	        new ActionChoice(
+	            ActionNames.Dance.toString(),
+	            bluepotion,
+	            Icons.kneel,
+	            "Dance with the potion",
+	            true),
+	        dancePotionKillEnemyNode
+	    );
+
+
+	
+		 drinkPotionKillEnemyNode.addChild(
+		     new ActionChoice(
+		         ActionNames.Talk.toString(),
+		         NPC,
+		         Icons.talk,
+		         "Talk to NPC",
+		         true),
+		     talkToNPCNode
+		 );
+
+		 dancePotionKillEnemyNode.addChild(
+		     new ActionChoice(
+		         ActionNames.AskHelp.toString(),
+		         NPC,
+		         Icons.kneel,
+		         "Ask for help",
+		         true),
+		     askHelpKilledbyEnemyNode
+		 );
+	
+		 dancePotionKillEnemyNode.addChild(
+		     new ActionChoice(
+		         ActionNames.RefuseHelp.toString(),
+		         NPC,
+		         Icons.arrest,
+		         "Refuse help",
+		         true),
+		     refuseHelpKilledbyNPCNode
+		 );
+		 
+
+		 exitDoorNode.addChild(
+		     new ActionChoice(
+		         ActionNames.GameOver.toString(),
+		         null, 
+		         Icons.exit,
+		         "Game Over",
+		         true),
+		     null
+		 );
+
+
+		 attackNPCDieNode.addChild(
+		     new ActionChoice(
+		         ActionNames.GameOver.toString(),
+		         null,
+		         Icons.exit,
+		         "Game Over",
+		         true),
+		     null
+		 );
+
+
+		 talkToNPCNode.addChild(
+		     new ActionChoice(
+		         ActionNames.Discuss.toString(),
+		         NPC,
+		         Icons.talk,
+		         "Discuss your quest",
+		         true),
+		     talkWithNpcSequenceNode
+		 );
+
+
+		 danceKilledByEnemyNode.addChild(
+		     new ActionChoice(
+		         ActionNames.GameOver.toString(),
+		         null,
+		         Icons.exit,
+		         "Game Over",
+		         true),
+		     null
+		 );
+
+
+		 askHelpKilledbyEnemyNode.addChild(
+		     new ActionChoice(
+		         ActionNames.GameOver.toString(),
+		         null,
+		         Icons.exit,
+		         "Game Over",
+		         true),
+		     null
+		 );
+
+
+		 refuseHelpKilledbyNPCNode.addChild(
+		     new ActionChoice(
+		         ActionNames.GameOver.toString(),
+		         null,
+		         Icons.exit,
+		         "Game Over",
+		         true),
+		     null 
+		 );
+
+
+		 enemyDeadNode.addChild(
+		     new ActionChoice(
+		         ActionNames.Celebrate.toString(),
+		         Charlotte,
+		         Icons.drink,
+		         "Celebrate your victory",
+		         true),
+		     null 
+		 );
+
+
+		 potionSequenceNode.addChild(
+		     new ActionChoice(
+		         ActionNames.PotionSeq.toString(),
+		         bluepotion,
+		         Icons.potion,
+		         "Continue with potion",
+		         true),
+		     null 
+		 );
+
+
+		 npcSequenceNode.addChild(
+		     new ActionChoice(
+		         ActionNames.NPCSeq.toString(),
+		         NPC,
+		         Icons.boot,
+		         "Continue with NPC",
+		         true),
+		     null
+		 );
+
+	
+		 talkWithNpcSequenceNode.addChild(
+		     new ActionChoice(
+		         ActionNames.DiscussMore.toString(),
+		         NPC,
+		         Icons.talk,
+		         "Discuss more",
+		         true),
+		     null
+		 );
+		 
+			
+		var root = new Node(NodeLabels.Init.toString());
+		root.addChild(new SelectionChoice("Init"), initNode);
+			
+		return root;
 	}
 
 	@Override
@@ -74,10 +327,6 @@ public class ShortStory implements IStory{
 		itemlist.put(Itemnames.bluepotion, new Item(ThingNames.Bluepotion, Items.BluePotion));
 		itemlist.put(Itemnames.enchantedBook, new Item(ThingNames.EnchantedBook, Items.SpellBook));
 	}
-	
-	
-	
-	
 	
 	public ActionMap getMap() {
 		var map = new ActionMap();
@@ -101,6 +350,9 @@ public class ShortStory implements IStory{
 		map.add(NodeLabels.talkwithnpcsequence.toString(), getTalkWithNpcSequence());
 		return map;
 	}
+	
+	
+	
 	
 	private ActionSequence getInitSequence() {
 		var charlotte = characterlist.get(Characternames.Charlotte);
